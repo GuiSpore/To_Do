@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <style>
+        body{background-color: darkblue;}
+        h1{text-align: center; color: white;}
+        li{color:white}
+        p{color: white;}
+    </style>
+</head>
+
+<body>
+    {% block content %}
+        <h1>Lista de tarefas</h1>
+    
+        <button type="button"><a href="{% url 'nova' %}">Nova Tarefa</a></button>
+        <ul>
+            {% if tarefas %}
+            {% for tarefa in tarefas %}
+            <a href="{% url 'deletar' tarefa.pk %}">
+                <li>{{ tarefa.nome_tarefa }}</li>
+            </a>
+            {% endfor %}
+            {% else %}
+                <p>Nenhuma tarefa encontrada.</p>        
+            {% endif %}
+        </ul>
+    {% endblock %}
+</body>
+
+</html>
